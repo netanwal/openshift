@@ -6,9 +6,9 @@ metadata:
 spec:
   replicas:  {{ .Values.ReplicaNumber }}
   selector:
-    matchLabels: {{ .Chart.Name }}
+    matchLabels: 
 # set your lab user name
-      app: user10-hello-world
+      app: app: {{ .Chart.Name }}
   template:
     metadata:
       name: {{ .Chart.Name }}
