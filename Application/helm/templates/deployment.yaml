@@ -4,7 +4,7 @@ metadata:
 # set your lab user name
   name: user10-hello-world
 spec:
-  replicas:  {{ .Values.ReplicaNumber }
+  replicas:  {{ .Values.ReplicaNumber }}
   selector:
     matchLabels: {{ .Chart.Name }}
 # set your lab user name
