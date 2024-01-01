@@ -2,7 +2,7 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
 # set your lab user name
-  name: user10-hello-world
+  name: {{ .Chart.Name }}
 spec:
   replicas:  {{ .Values.ReplicaNumber }}
   selector:
