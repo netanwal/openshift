@@ -21,7 +21,7 @@ spec:
           terminationMessagePath: /dev/termination-log
           name: {{ .Chart.Name }}
           ports:
-            - containerPort: { .Values.containers.containerPort }
+            - containerPort: {{ .Values.containers.containerPort }}
               protocol: TCP
           imagePullPolicy: IfNotPresent
 # Update with the image you build in part 1
