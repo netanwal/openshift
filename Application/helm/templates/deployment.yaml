@@ -4,39 +4,37 @@ metadata:
 # set your lab user name
   name: {{ .Chart.Name }}
 spec:
-  replicas:  {{ .Values.ReplicaNumber }}
+  replicas: {{ .Values.ReplicaNumber }}
   selector:
-    matchLabels: 
+    matchLabels:
 # set your lab user name
       app: {{ .Chart.Name }}
   template:
     metadata:
-      name: {{ .Chart.Name }}
       labels:
-    spec:
-      volumes:
-        - name: index-html
-          configMap:
-            name: '{{ .Chart.Name }}-html'
-            defaultMode: 420
 # set your lab user name
         app: {{ .Chart.Name }}
     spec:
-      containers: 
+      containers:
         - resources: {}
           terminationMessagePath: /dev/termination-log
-          name: {{ .Chart.Name }}
+          name: hello-world
           ports:
             - containerPort: {{ .Values.containers.containerPort }}
               protocol: TCP
           imagePullPolicy: IfNotPresent
 # Update with the image you build in part 1
-          image:  {{ .Values.containers.image }}:{{ .Values.containers.tag }}
+          image: {{ .Values.containers.image }}:{{ .Values.containers.tag }}
           volumeMounts:
             - name: index-html
               mountPath: /tmp/html # this will mount the html.index file to it application location
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
+      volumes:
+        - name: index-html
+          configMap:
+            name: '{{ .Chart.Name }}-html'
+            defaultMode: 420
   strategy:
     type: RollingUpdate
     rollingUpdate:
